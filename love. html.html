@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مفاجأة سيف 💗</title>
+<style>
+body {
+  margin:0;
+  background:black;
+  font-family:'Cairo',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  color:white;
+}
+.box {
+  background:#ff77b7;
+  border-radius:22px;
+  padding:22px;
+  width:92%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 0 30px #ff77b7aa;
+  position:relative;
+  overflow:hidden;
+}
+.kitty {
+  width:80px;
+  margin:0 auto 10px;
+  animation: dance 2s infinite;
+  position: relative;
+}
+@keyframes dance {
+  0%,100%{transform:translate(0,0) rotate(0deg);}
+  20%{transform:translate(-10px,-10px) rotate(-10deg);}
+  40%{transform:translate(10px,-15px) rotate(10deg);}
+  60%{transform:translate(-10px,-10px) rotate(-10deg);}
+  80%{transform:translate(10px,-5px) rotate(5deg);}
+}
+.q {font-size:20px; margin:14px 0; text-shadow: 1px 1px 2px #000;}
+button {
+  background:white;
+  color:#ff4fa3;
+  border:none;
+  border-radius:999px;
+  padding:10px 22px;
+  margin:6px;
+  font-size:16px;
+  cursor:pointer;
+  transition: transform 0.2s;
+}
+button:hover {transform: scale(1.1);}
+.heart {
+  position:absolute;
+  bottom:0;
+  font-size:20px;
+  animation: float 4s linear forwards;
+}
+@keyframes float {
+  from{opacity:1; transform:translateY(0) rotate(0deg);}
+  to{opacity:0; transform:translateY(-250px) rotate(360deg);}
+}
+.meterBox {
+  margin-top:15px;
+}
+.meterContainer {
+  width:100%;
+  background:#fff;
+  border-radius:12px;
+  height:20px;
+  margin-top:5px;
+}
+.meterFill {
+  width:0%;
+  height:100%;
+  background:#ff4fa3;
+  border-radius:12px;
+  transition: width 0.05s linear;
+}
+.meterText {margin-bottom:4px; font-weight:bold;}
+</style>
+</head>
+<body>
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9f6f0c91d7.mp3" type="audio/mpeg">
+</audio>
+<div class="box">
+  <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Hello_kitty.svg" class="kitty" id="kitty">
+  <div class="q" id="q">انتي ريفان؟</div>
+  <div id="c">
+    <button onclick="nextQuestion()">اي</button>
+    <button onclick="nextQuestion()">لا</button>
+  </div>
+</div>
+<script>
+function hearts(num=12){
+  for(let i=0;i<num;i++){
+    let h=document.createElement('div');
+    h.className='heart'; h.innerText='💗';
+    h.style.left=Math.random()*100+'%';
+    h.style.fontSize=(10+Math.random()*20)+'px';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),4000);
+  }
+}function nextQuestion(){ hearts(); q.innerText='تحبين سيف؟'; c.innerHTML=<button onclick="loveLow()">احبه</button><button onclick="loveHigh()">احبه مووت</button>; }
+
+function loveLow(){ hearts(15); q.innerText='قليلة بحق سيف 😌'; c.innerHTML=<button onclick="marry()">اي صحيح اني اعشقه واموت عليه</button>; }
+
+function loveHigh(){ hearts(15); q.innerText='هنيال سيف عليك 💕'; c.innerHTML=<button onclick="marry()">كملي</button>; }
+
+function marry(){ hearts(20); q.innerText='تتزوجيني؟'; c.innerHTML=<button onclick="meter()">اكيدددد</button>; }
+
+function meter(){ c.innerHTML=''; let max=100000000000000; let val=0; q.innerHTML=<div class='meterText'>مقدار حب سيف لك</div><div class='meterContainer'><div class='meterFill' id='fill'></div></div><div class='meterText' id='num'>0 / ${max}</div>; let i=setInterval(()=>{ if(val<max){ val+=max/200; document.getElementById('fill').style.width=(val/max*100)+'%'; document.getElementById('num').innerText=Math.floor(val)+' / '+max; if(Math.random()<0.2) hearts(2); } else clearInterval(i); },50); } </script>
+
+</body>
+</html>
